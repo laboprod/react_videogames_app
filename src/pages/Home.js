@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
-// REDUX
+// REDUX and Route
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
 import { loadGames } from '../actions/gamesAction';
 // COMPONENTS
 import Game from '../components/Game';
@@ -8,7 +9,7 @@ import GameDetail from '../components/GameDetail';
 // Styling and Animation
 import styled from 'styled-components';
 import { motion, AnimatePresence, AnimateSharedLayout } from 'framer-motion';
-import { useLocation } from 'react-router-dom';
+import { fadeIn } from '../animations';
 
 const Home = () => {
 	// get the current location
@@ -23,7 +24,7 @@ const Home = () => {
 	const { popular, newGames, upcoming, searched } = useSelector((state) => state.games);
 
 	return (
-		<GameList>
+		<GameList variants={fadeIn} initial='hidden' animate='show'>
 			<AnimateSharedLayout type='crossfade'>
 				<AnimatePresence>{pathId && <GameDetail pathId={pathId} />}</AnimatePresence>
 				{searched.length ? (
@@ -65,6 +66,14 @@ const GameList = styled(motion.div)`
 	padding: 0rem 5rem;
 	h2 {
 		padding: 5rem 0rem;
+	}
+
+	@media (max-width: 670px) {
+		h2 {
+			padding: 1.5rem;
+			justify-content: center;
+			text-align: center;
+		}
 	}
 `;
 

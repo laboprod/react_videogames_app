@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
 import logo from '../img/logo.svg';
+import { fadeIn } from '../animations';
 // Redux and Routes
 import { fetchSearch } from '../actions/gamesAction';
 import { useDispatch } from 'react-redux';
@@ -26,7 +27,7 @@ const Nav = () => {
 	};
 
 	return (
-		<StyledNav>
+		<StyledNav variants={fadeIn} initial='hidden' animate='show'>
 			<Logo onClick={clearSearched}>
 				<img src={logo} alt='logo' />
 				<h1>React Gaming</h1>
@@ -63,6 +64,17 @@ const StyledNav = styled(motion.div)`
 		background: #ff7676;
 		color: white;
 	}
+
+	@media (max-width: 670px) {
+		padding: 0.5rem 0.5rem;
+		input {
+			width: 50%;
+			font-size: 1rem;
+		}
+		button {
+			font-size: 1rem;
+		}
+	}
 `;
 
 const Logo = styled(motion.div)`
@@ -74,6 +86,10 @@ const Logo = styled(motion.div)`
 	img {
 		width: 2rem;
 		height: 2rem;
+	}
+
+	@media (max-width: 670px) {
+		padding: 0.5rem;
 	}
 `;
 
