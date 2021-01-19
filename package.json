@@ -19,6 +19,10 @@
 		"styled-components": "^5.2.1",
 		"web-vitals": "^0.2.4"
 	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/laboprod/react_videogames_app.git"
+	},
 	"scripts": {
 		"start": "react-scripts start",
 		"build": "react-scripts build",
